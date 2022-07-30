@@ -13,7 +13,7 @@ class Comment extends HTMLElement {
         <em><strong>Email:</em></strong> ${this.getAttribute("email")}
         </h3>
         <h3>
-        <em><strong>Your Thoughts:</em></strong> ${this.getAttribute("comment")}
+        <em><strong>Your Testimony:</em></strong> ${this.getAttribute("comment")}
         </h3>
         <h5>***********************************************</h5></div>`;
     }

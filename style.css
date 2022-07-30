@@ -3,6 +3,7 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
+  text-align:center;
 
   color-scheme: light dark;
   color: rgba(36, 141, 202, 0.969);
@@ -28,17 +29,21 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: 600px;
   max-width: 500px;
   margin: auto;
   min-height: 100vh;
   background-color: lightcoral
+
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 3em;
   line-height: 1.1;
   margin-bottom: 50px;
+  margin-top: 25px;
+  margin-right: 14px;
+  text-align:center;
 }
 
 #app {
@@ -68,20 +73,19 @@ h1 {
 .card {
   padding: 2em;
   background-color: plum;
-  text-align: center
-
+  text-align: center;
 }
 
 .comment {
   border: 1px navy solid;
   border-radius: 5px;
   padding: 15px;
-  width: 300px;
+  width: 450px;
   background-color: deepskyblue;
   box-shadow: 10px 10px rgb(19, 66, 99);
   margin-top:10px ;
   margin-bottom:10px ;
-  margin-left: 55px;
+  margin-left: 30px;
   margin-right: 55px;
   text-align:center;
 }
@@ -117,7 +121,6 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: deepskyblue
-    
   }
 
   .stars, .twinkling {
