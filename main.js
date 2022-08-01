@@ -16,13 +16,13 @@ document.querySelector("#app").innerHTML = `
     <input type="checkbox" id="checkbox" name="checkbox" value="Yes" class="checkbox" required >
     <label for="check"></label><br>
     <p>
-    <input type="submit" onclick="myFunction()" value="Submit">
+    <input type="submit" value="Submit">
     </p>
    </form>
    <h5>Submitted data :</h5>
    <p id="data"></p>
   <div>
-    <section>
+    <section id="comments">
     <c-comment name="JA" email="kthornetdcp@gmail.com" comment="I made it through COVID."></c-comment>
     <c-comment name="AB" email="tthorne@yahoo.com" comment="I was able to transition into tech."></c-comment>
     <c-comment name="AM" email="boondocks@hotmail.com" comment="I passed my class after praying for an increase
@@ -31,14 +31,33 @@ document.querySelector("#app").innerHTML = `
   </div>
 `;
 
-function myFunction(){
-  let data = "";  let name = document.getElementById("userName").value
-  let email = document.getElementById("userEmail").value
-  let comment = document.getElementById("userComment").value
+// function myFunction(){
+//   let data = "";  let name = document.getElementById("#userName").value
+//   let email = document.getElementById("#userEmail").value
+//   let comment = document.getElementById("userComment").value
  
- data = "User name : "+name+"<br/>User email : "+email+ "<br/>User comment : "+comment
+//  data = "User name : "+name+"<br/>User email : "+email+ "<br/>User comment : "+comment
  
- document.getElementById("data").innerHTML = data  // display data to paragraph
- }
+//  document.getElementById("data").innerHTML = data  // display data to paragraph
+//  };
 
-setupCounter(document.querySelector("#counter"));
+const addComment = (ev) => {
+  ev.preventDefault();
+  const name = document.querySelector("#userName").value;
+  const email = document.querySelector("#userEmail").value;
+  const comment = document.querySelector("#userComment").value;
+
+  console.log(name);
+  console.log(email);
+  console.log(comment);
+
+  //building a new tag and appending it to ........ in the DOM 
+  const template = `
+  <c-comment 
+    name="${name}" 
+    email="${email}" 
+    comment="${comment}">
+  </c-comment>`;
+  document.querySelector("#comments").insertAdjacentHTML("afterbegin",template);
+};
+document.querySelector("form").addEventListener("submit", addComment);

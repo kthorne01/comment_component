@@ -4,7 +4,8 @@ class Comment extends HTMLElement {
     }
     //builds the html for the component
     connectedCallback() {
-        this.innerHTML = `<div class="comment card">
+        this.innerHTML = 
+        `<div class="comment card">
         <h5>***********************************************</h5>
         <h3> 
         <em><strong>Name:</em></strong> ${this.getAttribute("name")}
@@ -15,7 +16,8 @@ class Comment extends HTMLElement {
         <h3>
         <em><strong>Your Testimony:</em></strong> ${this.getAttribute("comment")}
         </h3>
-        <h5>***********************************************</h5></div>`;
+        <h5>***********************************************</h5>
+        </div>`;
     }
   }
 
