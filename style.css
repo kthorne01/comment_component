@@ -38,11 +38,12 @@ body {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2.75em;
   line-height: 1.1;
   margin-bottom: 50px;
   margin-top: 25px;
-  margin-right: 14px;
+  margin-right: auto;
+  margin-left: auto;
   text-align:center;
 }
 
@@ -122,6 +123,7 @@ button:focus-visible {
     color: #213547;
     background-color: deepskyblue
   }
+
 
   .stars, .twinkling {
     position:absolute;
