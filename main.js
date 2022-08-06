@@ -1,23 +1,9 @@
 import "./style.css";
 
+
 document.querySelector("#app").innerHTML = `
-<section>
-<h1>What's Your Testimony?</h1>
-</section>
-<form id="myForm">
-      <strong>Name</strong>: <input id="userName" type="text" name="fname" required>
-      <br><br>
-      <strong>Email</strong> : <input id="userEmail" type="text" name="email" required>
-      <br><br>
-      <textarea id ="userComment" rows="4" cols="50" name="comment" required> Share your testimony here...</textarea>
-      <br><br>
-    <label><em><strong>I definitely want to share my testimony with others!!</strong></em></label><br>
-    <input type="checkbox" id="checkbox" name="checkbox" value="Yes" class="checkbox" required >
-    <label for="check"></label><br>
-    <p>
-    <input type="submit" value="Submit">
-    </p>
-   </form>
+
+
    <h5>Submitted data :</h5>
    <p id="data"></p>
   <div>
@@ -30,6 +16,9 @@ document.querySelector("#app").innerHTML = `
   </div>
 `;
 
+// {/* <input type="submit" value="Submit"></input> */}
+// {/* <input type="submit" onclick="myFunction()" value="Submit"> */}
+
 // function myFunction(){
 //   let data = "";  let name = document.getElementById("#userName").value
 //   let email = document.getElementById("#userEmail").value
@@ -40,17 +29,33 @@ document.querySelector("#app").innerHTML = `
 //  document.getElementById("data").innerHTML = data  // display data to paragraph
 //  };
 
+// const submit = document.getElementById('submit');
+// submit.addEventListener('click', function handleClick(event) {
+//   event.preventDefault();
+
+//   const inputs = document.querySelectorAll('#userName, #userEmail, #userComment');
+
+//   inputs.forEach(input => {
+//     input.value = '';
+//   });
+// });
+
+
 const addComment = (ev) => {
   ev.preventDefault();
+
+  // get user input from the DOM
   const name = document.querySelector("#userName").value;
   const email = document.querySelector("#userEmail").value;
   const comment = document.querySelector("#userComment").value;
+
+
   const currentDate = new Date();
   const time = currentDate.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'});
  ;
 
   const currentDayOfMonth = currentDate.getDate();
-  const currentMonth = currentDate.getMonth(); // Be careful! January is 0, not 1
+  const currentMonth = currentDate.getMonth(); //January is 0, not 1
   const currentYear = currentDate.getFullYear();
   
 
@@ -66,7 +71,7 @@ const addComment = (ev) => {
   console.log(time);
 
 
-  //building a new tag and appending it to ........ in the DOM
+  //building a new tag using template literals 
   const template = `
   <c-comment 
     name="${name}" 
@@ -75,9 +80,31 @@ const addComment = (ev) => {
     day_time="${dateString}"
     only_time="${time}">
   </c-comment>`;
+
+  //adding new tag to the DOM
   document
     .querySelector("#comments")
     .insertAdjacentHTML("afterbegin", template);
+    document.querySelector("#userName").value = "";
+    document.querySelector("#userEmail").value = "";
+    document.querySelector("#userComment").value = "Delete this text and share your testimony here...";
+
+    // formObject.reset();
+    // document.querySelector("form").addEventListener("submit", addComment);
 };
 
+// takes what user types and clears the comment out of the input field
+
+
 document.querySelector("form").addEventListener("submit", addComment);
+
+// document.querySelector("myForm").addEventListener("Submit", addComment);
+
+    
+// function myFunction() {
+//   // document.querySelector("form").addEventListener("submit", addComment);
+//   document.getElementById("myForm").reset();
+// }
+
+
+
