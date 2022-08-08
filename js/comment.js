@@ -1,10 +1,12 @@
 class Comment extends HTMLElement {
-    constructor() {
-      super();
-    }
+    // constructor() {
+    //   super();
+    // }
     //builds the html for the component
+  
     connectedCallback() {
-
+      // const rn = Math.random() * 100;
+      // this.innerHTML =
       const shadow = this.attachShadow({mode: "open"});
         shadow.innerHTML = 
         `<div class="comment card">
@@ -20,7 +22,6 @@ class Comment extends HTMLElement {
         </h3>
         <h6>
         ${this.getAttribute("day_time")} <br>
-        ${this.getAttribute("only_time")}
         </h6>
         <h5>***********************************************</h5>
         </div>
@@ -53,3 +54,6 @@ class Comment extends HTMLElement {
   }
 
   customElements.define('c-comment', Comment);
+
+  // ${this.getAttribute("day_time")} <br>
+  // ${this.getAttribute("only_time")}

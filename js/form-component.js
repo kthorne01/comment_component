@@ -39,7 +39,7 @@ export default class Form {
     <input type="checkbox" id="checkbox" name="checkbox" value="Yes" class="checkbox" required >
     <label for="check"></label><br>
     <p>
-    <input type="submit" value="Submit"></input>
+    <input type="submit" value="Submit" class="submit"></input>
     </p>
    </form>
 
@@ -74,6 +74,10 @@ export default class Form {
 
 
         // Your Job: how do you clear out your form!!
+        document.querySelector('#userName').value = "";
+        document.querySelector('#userEmail').value = "";
+        document.querySelector('#userComment').value = "";
+        document.querySelector('#checkbox').checked = false;
 
     }
 

@@ -6,35 +6,52 @@ The job of the comment list is to:
 */
 
 export default class CommentList {
-    constructor(comments) {
-        // when a new instance of CommentList is created,
-        // it needs to know what comments it should draw.
-        // it should draw those comments.
-        console.log(comments);
 
-        for (let i = 0; i < comments.length; i++) {
-            // Julius first:
-            let name = comments[i].name;
-            let email = comments[i].email;
-            let comment = comments[i].comment;
-            let timestamp = comments[i].timestamp;
+  //constructor function
+  constructor(stateManager) {
 
-            // creating an HTML representation of it
-            let template = `
+    //then the comment list is going to subscribe to the "comment Updated"
+    stateManager.subscribe('add comment', this.redraw.bind(this));
+
+    //if I commment out this.redraw, I won't be able to see the comments loaded anymore
+    this.redraw(stateManager.comments);
+  }
+
+  //redraw function
+  redraw(comments) {
+    document.querySelector(".comments").innerHTML = "";
+    // when a new instance of CommentList is created,
+    // it needs to know what comments it should draw.
+    // it should draw those comments.
+    console.log(comments);
+
+    for (let i = 0; i < comments.length; i++) {
+      // Julius first:
+      let name = comments[i].name;
+      // let email = comments[i].email;
+      // let comment = comments[i].comment;
+      // let timestamp = comments[i].timestamp;
+
+      // creating an HTML representation of it
+      let template = `
                 <c-comment 
-                    name="${name}" 
-                    email="${email}" 
-                    comment="${comment}"
-                    timestamp="${timestamp}">
-                <c-comment>
+                    name="${comments[i].name}" 
+                    email="${comments[i].email}" 
+                    comment="${comments[i].comment}"
+                    day_time="${comments[i].timestamp}">
+                </c-comment>
             `;
 
-            // we need to append it to the DOM
-            document.querySelector('.comments').insertAdjacentHTML(
-                'afterbegin', template
-            );
-        }
-
-        
+      // we need to append it to the DOM
+      document
+        .querySelector(".comments")
+        .insertAdjacentHTML("afterbegin", template);
     }
+    //this redraw method will clear out the comments and redraw with the new comments
+  }
+  
+  //greeting function
+  // greeting(){
+  //   console.log("hello world");
+  // }
 }

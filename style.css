@@ -91,6 +91,11 @@ h1 {
   text-align:center;
 }
 
+.submit {
+  border: 1px navy solid;
+  background-color: white;
+}
+
 .comment h3 {
   color: rgb(69, 69, 75);
 }
