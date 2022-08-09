@@ -31,7 +31,7 @@ class Comment extends HTMLElement {
           border: 1px navy solid;
           border-radius: 5px;
           padding: 15px;
-          width: 450px;
+          
           background-color: deepskyblue;
           box-shadow: 10px 10px rgb(19, 66, 99);
           margin-top:10px ;
