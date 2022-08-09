@@ -12,9 +12,10 @@ export default class CommentList {
 
     //then the comment list is going to subscribe to the "comment Updated"
     stateManager.subscribe('add comment', this.redraw.bind(this));
+    stateManager.subscribe('comment_loaded', this.redraw.bind(this));
 
     //if I commment out this.redraw, I won't be able to see the comments loaded anymore
-    this.redraw(stateManager.comments);
+    // this.redraw(stateManager.comments);
   }
 
   //redraw function
