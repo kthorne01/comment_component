@@ -53,7 +53,7 @@ export default class StateManager {
     var openRequest = indexedDB.open("kts_db", 2);
 
     // 1. This function created our new data store:
-    openRequest.onupgradeneeded = (function (e) {
+    openRequest.onupgradeneeded = function (e) {
       this.db = e.target.result;
       let db = this.db;
       console.log("running onupgradeneeded");
@@ -65,16 +65,16 @@ export default class StateManager {
           autoincrement: true,
         });
       }
-    }).bind(this);
+    }.bind(this);
 
     // 2. This function fires when the database has been opened.
     // This is where we will add new comments to the datastore:
-    openRequest.onsuccess = (function (e) {
+    openRequest.onsuccess = function (e) {
       console.log("running onsuccess");
       db = e.target.result;
       // call this function to create a new comment:
       this.readCommentsFromDataStore(db, "comments-loaded");
-    }).bind(this);
+    }.bind(this);
   }
 
   // 2. we need a way to update the comments list....push method of an array appends an item....
@@ -82,32 +82,42 @@ export default class StateManager {
   addComment(newComment) {
     // this.comments.push(newComment);
     // console.log(this.comments);
- 
-    let db = this.db;
+    // "push" method of an array appends an item to the bottom
+    var openRequest = indexedDB.open("kts_db", 2);
+    openRequest.onsuccess = function (e) {
+      console.log("running onsuccess");
+      db = e.target.result;
+    
+    // let db = this.db;*****************************************
+    // call this function to create a new comment:
     var transaction = db.transaction(['comments'], 'readwrite');
     var comments = transaction.objectStore('comments');
-    newComment.id = comments.count()+1
+    newComment.id = Math.floor(Math.random() * 100000000);
+    console.log(newComment);
     console.log(comments);
-    var request = comments.add;
+    var request = comments.add(newComment);
 
     request.onerror = function(e) {
         console.log('Error', e.target.error.name);
     };
-    request.onsuccess = (function(e) {
+    request.onsuccess = function(e) {
         console.log('The comment has been successfully added!');
         this.readCommentsFromDataStore(db, "comment-added")
         // this.notify("comment-added", )
-    }).bind(this);
+    }.bind(this);
 
    // Commit: close connection
    transaction.oncomplete = () => {
         db.close();
    };
-  }
+  }.bind(this);
+  let db = this.db;
+}
 
   // 3. method that allows other components to subscribe
   // to specific events, and which functions to invoke
   // when those events are triggered:
+  // 3. we need a way to tell the other components to redraw
   subscribe(theEvent, theResponse) {
     this.subscribers.push([theEvent, theResponse]);
   }
@@ -122,10 +132,12 @@ export default class StateManager {
     // A: I trigger the function they told me to trigger.
 
     for (let i = 0; i < this.subscribers.length; i++) {
-      const subscriberEvent = this.subscribers[i][0];
-      const theFunction = this.subscribers[i][1];
-      if (theEvent == subscriberEvent) {
-        theFunction(theData);
+      const subscriber = this.subscribers[i][0];
+      const eventName = subscriber[0];
+      const f = subscriber[1];
+      if (eventName === theEvent) {
+        console.log("notifying my subscriber");
+        f(theData);
       }
     }
   }
@@ -144,10 +156,10 @@ export default class StateManager {
       }
     };
 
-    transaction.oncomplete = (function (event) {
+    transaction.oncomplete = function (event) {
       console.log(commentList);
       this.notify(eventName, commentList);
       // callback(agregate); // return items
-    }).bind(this);
+    }.bind(this);
   }
 }
