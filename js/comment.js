@@ -1,9 +1,14 @@
-class Comment extends HTMLElement {
-    // constructor() {
-    //   super();
-    // }
+// creating a new class that controls what my new element would look like.
+// includes what attributes it needs which is the name email and comment
+//and how i want to present those comment ising HTML
+// also includes style tag aka style rules
+
+export default class Comment extends HTMLElement {
+    constructor() {
+      super();
+    }
     //builds the html for the component
-  
+    //overiding the connected call back method with my own HTML code
     connectedCallback() {
       // const rn = Math.random() * 100;
       // this.innerHTML =

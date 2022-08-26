@@ -8,7 +8,7 @@ a container to put all of our comments in.
 4. Make sure it saves!
 
 */
-
+console.log("data base");
 let db;
 
 var openRequest = indexedDB.open('kts_db', 2);

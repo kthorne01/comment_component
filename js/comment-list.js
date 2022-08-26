@@ -11,7 +11,7 @@ export default class CommentList {
   constructor(stateManager) {
 
     //then the comment list is going to subscribe to the "comment Updated"
-    stateManager.subscribe('add comment', this.redraw.bind(this));
+    stateManager.subscribe('add_comment', this.redraw.bind(this));
     stateManager.subscribe('comment_loaded', this.redraw.bind(this));
 
     //if I commment out this.redraw, I won't be able to see the comments loaded anymore
@@ -28,7 +28,7 @@ export default class CommentList {
 
     for (let i = 0; i < comments.length; i++) {
       // Julius first:
-      let name = comments[i].name;
+      // let name = comments[i].name;************************
       // let email = comments[i].email;
       // let comment = comments[i].comment;
       // let timestamp = comments[i].timestamp;
@@ -42,6 +42,8 @@ export default class CommentList {
                     day_time="${comments[i].timestamp}">
                 </c-comment>
             `;
+            ///***************************
+        console.log(template);
 
       // we need to append it to the DOM
       document
