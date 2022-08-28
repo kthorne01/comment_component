@@ -16,29 +16,29 @@ export default class StateManager {
   constructor() {
     // this week: figuring out how to store and then reload
     // comments using indexDB.
-    // this.comments = [
-    //     {
-    //         name: "Julius",
-    //         email: "julius@gmail.com",
-    //         comment: "Here is my comment!",
-    //         timestamp: "7/29/2022 3:15:13PM",
+    this.comments = [
+        {
+            name: "Julius",
+            email: "julius@gmail.com",
+            comment: "Here is my comment!",
+            timestamp: "7/29/2022 3:15:13PM",
 
-    //     },
-    //     {
-    //         name: "Adwaina",
-    //         email: "adwaina@gmail.com",
-    //         comment: "text text text text text text text text text text ",
-    //         timestamp: "8/3/2022 3:15:13PM",
+        },
+        {
+            name: "Adwaina",
+            email: "adwaina@gmail.com",
+            comment: "text text text text text text text text text text ",
+            timestamp: "8/3/2022 3:15:13PM",
 
-    //     },
-    //     {
-    //         name: "Monique",
-    //         email: "mo@gmail.com",
-    //         comment: "text text text text text text text text text text ",
-    //         timestamp: "8/4/2022 3:15:13PM",
+        },
+        {
+            name: "Monique",
+            email: "mo@gmail.com",
+            comment: "text text text text text text text text text text ",
+            timestamp: "8/4/2022 3:15:13PM",
 
-    //     }
-    // ]
+        }
+    ]
     //mailing list
     this.subscribers = [];
     this.loadDatabase();
@@ -71,9 +71,9 @@ export default class StateManager {
     // This is where we will add new comments to the datastore:
     openRequest.onsuccess = function (e) {
       console.log("running onsuccess");
-      db = e.target.result;
+      let db = e.target.result;
       // call this function to create a new comment:
-      this.readCommentsFromDataStore(db, "comments-loaded");
+      this.readCommentsFromDataStore(db, "comment_loaded");
     }.bind(this);
   }
 
@@ -91,6 +91,7 @@ export default class StateManager {
     // let db = this.db;*****************************************
     // call this function to create a new comment:
     var transaction = db.transaction(['comments'], 'readwrite');
+    console.log(transaction);
     var comments = transaction.objectStore('comments');
     newComment.id = Math.floor(Math.random() * 100000000);
     console.log(newComment);
@@ -102,7 +103,7 @@ export default class StateManager {
     };
     request.onsuccess = function(e) {
         console.log('The comment has been successfully added!');
-        this.readCommentsFromDataStore(db, "comment-added")
+        this.readCommentsFromDataStore(db, "add_comment")
         // this.notify("comment-added", )
     }.bind(this);
 
@@ -132,7 +133,7 @@ export default class StateManager {
     // A: I trigger the function they told me to trigger.
 
     for (let i = 0; i < this.subscribers.length; i++) {
-      const subscriber = this.subscribers[i][0];
+      const subscriber = this.subscribers[i];
       const eventName = subscriber[0];
       const f = subscriber[1];
       if (eventName === theEvent) {
@@ -158,6 +159,7 @@ export default class StateManager {
 
     transaction.oncomplete = function (event) {
       console.log(commentList);
+      console.log(eventName);
       this.notify(eventName, commentList);
       // callback(agregate); // return items
     }.bind(this);

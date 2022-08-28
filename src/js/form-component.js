@@ -29,11 +29,11 @@ export default class Form {
 <h1>What's Your Testimony?</h1>
 </section>
         <form id="myForm">
-      <strong>Name</strong>: <input id="userName" type="text" name="fname" required>
+      <strong>Name</strong>: <input id="userName" type="text" name="name" required>
       <br><br>
-      <strong>Email</strong> : <input id="userEmail" type="text" name="email" required>
+      <strong>Email</strong> : <input id="userEmail" type="text" name="email" placeholder="e.g. joe@gmail.com" required>
       <br><br>
-      <textarea id ="userComment" rows="4" cols="50" name="comment" required> Delete this text and share your testimony here...</textarea>
+      <textarea id ="userComment" rows="4" cols="50" name="comment" placeholder="Share your testimony here..." required></textarea>
       <br><br>
     <label><em><strong>I definitely want to share my testimony with others!!</strong></em></label><br>
     <input type="checkbox" id="checkbox" name="checkbox" value="Yes" class="checkbox" required >

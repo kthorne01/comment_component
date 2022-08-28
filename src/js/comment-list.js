@@ -15,7 +15,7 @@ export default class CommentList {
     stateManager.subscribe('comment_loaded', this.redraw.bind(this));
 
     //if I commment out this.redraw, I won't be able to see the comments loaded anymore
-    // this.redraw(stateManager.comments);
+    //this.redraw(stateManager.comments);
   }
 
   //redraw function
@@ -27,13 +27,14 @@ export default class CommentList {
     console.log(comments);
 
     for (let i = 0; i < comments.length; i++) {
-      // Julius first:
+      // Kayla first:
       // let name = comments[i].name;************************
       // let email = comments[i].email;
       // let comment = comments[i].comment;
       // let timestamp = comments[i].timestamp;
 
       // creating an HTML representation of it
+      console.log (comments[i]);
       let template = `
                 <c-comment 
                     name="${comments[i].name}" 
