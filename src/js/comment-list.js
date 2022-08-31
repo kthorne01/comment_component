@@ -24,8 +24,7 @@ export default class CommentList {
     // when a new instance of CommentList is created,
     // it needs to know what comments it should draw.
     // it should draw those comments.
-    console.log(comments);
-
+    console.log(comments, "comments");
     for (let i = 0; i < comments.length; i++) {
       // Kayla first:
       // let name = comments[i].name;************************
@@ -43,13 +42,14 @@ export default class CommentList {
                     day_time="${comments[i].timestamp}">
                 </c-comment>
             `;
+      
             ///***************************
         console.log(template);
 
       // we need to append it to the DOM
       document
         .querySelector(".comments")
-        .insertAdjacentHTML("afterbegin", template);
+        .insertAdjacentHTML("beforebegin", template);
     }
     //this redraw method will clear out the comments and redraw with the new comments
   }
