@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comment Component</title>
+    <script type="module" crossorigin src="/assets/index.4f8e0f9e.js"></script>
+    <link rel="stylesheet" href="/assets/index.172c407c.css">
+  </head>
+  <body>
+    <main id="app">
+      <section class="form-container">
+        <!-- 
+                the form component is going to inject 
+                the form right here
+            -->
+      </section>
+      <h5>Submitted data :</h5>
+      <p id="data"></p>
+      <div>
+        <section class="comments" id="comments"></section>
+      </div>
+    </main>
+
+    
+    
+    <!-- <script type="module" src="/js/database-tests.js"></script> -->
+    <!-- **********************************
+Registers the service worker, which is stored at sw.js-->
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log(
+                `Service Worker registered! Scope: ${registration.scope}`
+              );
+            })
+            .catch((err) => {
+              console.log(`Service Worker registration failed: ${err}`);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
