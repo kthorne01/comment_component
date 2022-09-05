@@ -17,28 +17,25 @@ export default class StateManager {
     // this week: figuring out how to store and then reload
     // comments using indexDB.
     this.comments = [
-        {
-            name: "Julius",
-            email: "julius@gmail.com",
-            comment: "Here is my comment!",
-            timestamp: "7/29/2022 3:15:13PM",
-
-        },
-        {
-            name: "Adwaina",
-            email: "adwaina@gmail.com",
-            comment: "text text text text text text text text text text ",
-            timestamp: "8/3/2022 3:15:13PM",
-
-        },
-        {
-            name: "Monique",
-            email: "mo@gmail.com",
-            comment: "text text text text text text text text text text ",
-            timestamp: "8/4/2022 3:15:13PM",
-
-        }
-    ]
+      {
+        name: "Julius",
+        email: "julius@gmail.com",
+        comment: "Here is my comment!",
+        timestamp: "7/29/2022 3:15:13PM",
+      },
+      {
+        name: "Adwaina",
+        email: "adwaina@gmail.com",
+        comment: "text text text text text text text text text text ",
+        timestamp: "8/3/2022 3:15:13PM",
+      },
+      {
+        name: "Monique",
+        email: "mo@gmail.com",
+        comment: "text text text text text text text text text text ",
+        timestamp: "8/4/2022 3:15:13PM",
+      },
+    ];
     //mailing list
     this.subscribers = [];
     this.loadDatabase();
@@ -47,7 +44,6 @@ export default class StateManager {
   //this method loads the database from indexDB, creates a new comment store if it doesn't exist,....
   //....and reads the comment store
   loadDatabase() {
-    
     // let db;
 
     var openRequest = indexedDB.open("kts_db", 2);
@@ -87,33 +83,33 @@ export default class StateManager {
     openRequest.onsuccess = function (e) {
       console.log("running onsuccess");
       db = e.target.result;
-    
-    // let db = this.db;*****************************************
-    // call this function to create a new comment:
-    var transaction = db.transaction(['comments'], 'readwrite');
-    console.log(transaction);
-    var comments = transaction.objectStore('comments');
-    newComment.id = Math.floor(Math.random() * 100000000);
-    console.log(newComment);
-    console.log(comments);
-    var request = comments.add(newComment);
 
-    request.onerror = function(e) {
-        console.log('Error', e.target.error.name);
-    };
-    request.onsuccess = function(e) {
-        console.log('The comment has been successfully added!');
-        this.readCommentsFromDataStore(db, "add_comment")
+      // let db = this.db;*****************************************
+      // call this function to create a new comment:
+      var transaction = db.transaction(["comments"], "readwrite");
+      console.log(transaction);
+      var comments = transaction.objectStore("comments");
+      newComment.id = Math.floor(Math.random() * 100000000);
+      console.log(newComment);
+      console.log(comments);
+      var request = comments.add(newComment);
+
+      request.onerror = function (e) {
+        console.log("Error", e.target.error.name);
+      };
+      request.onsuccess = function (e) {
+        console.log("The comment has been successfully added!");
+        this.readCommentsFromDataStore(db, "add_comment");
         // this.notify("comment-added", )
-    }.bind(this);
+      }.bind(this);
 
-   // Commit: close connection
-   transaction.oncomplete = () => {
+      // Commit: close connection
+      transaction.oncomplete = () => {
         db.close();
-   };
-  }.bind(this);
-  let db = this.db;
-}
+      };
+    }.bind(this);
+    let db = this.db;
+  }
 
   // 3. method that allows other components to subscribe
   // to specific events, and which functions to invoke

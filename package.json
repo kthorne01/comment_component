@@ -6,10 +6,13 @@
   "scripts": {
     "dev": "vite serve src",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "prettier -c .",
+    "fix": "prettier --write ."
   },
   "devDependencies": {
     "vite": "^3.0.0",
-    "vite-plugin-pwa": "^0.12.3"
+    "vite-plugin-pwa": "^0.12.3",
+    "prettier": "^2.7.1"
   }
 }

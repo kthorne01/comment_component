@@ -6,13 +6,11 @@ The job of the comment list is to:
 */
 
 export default class CommentList {
-
   //constructor function
   constructor(stateManager) {
-
     //then the comment list is going to subscribe to the "comment Updated"
-    stateManager.subscribe('add_comment', this.redraw.bind(this));
-    stateManager.subscribe('comment_loaded', this.redraw.bind(this));
+    stateManager.subscribe("add_comment", this.redraw.bind(this));
+    stateManager.subscribe("comment_loaded", this.redraw.bind(this));
 
     //if I commment out this.redraw, I won't be able to see the comments loaded anymore
     //this.redraw(stateManager.comments);
@@ -33,7 +31,7 @@ export default class CommentList {
       // let timestamp = comments[i].timestamp;
 
       // creating an HTML representation of it
-      console.log (comments[i]);
+      console.log(comments[i]);
       let template = `
                 <c-comment 
                     name="${comments[i].name}" 
@@ -42,9 +40,9 @@ export default class CommentList {
                     day_time="${comments[i].timestamp}">
                 </c-comment>
             `;
-      
-            ///***************************
-        console.log(template);
+
+      ///***************************
+      console.log(template);
 
       // we need to append it to the DOM
       document
@@ -53,7 +51,7 @@ export default class CommentList {
     }
     //this redraw method will clear out the comments and redraw with the new comments
   }
-  
+
   //greeting function
   // greeting(){
   //   console.log("hello world");

@@ -4,17 +4,16 @@
 // also includes style tag aka style rules
 
 export default class Comment extends HTMLElement {
-    constructor() {
-      super();
-    }
-    //builds the html for the component
-    //overiding the connected call back method with my own HTML code
-    connectedCallback() {
-      // const rn = Math.random() * 100;
-      // this.innerHTML =
-      const shadow = this.attachShadow({mode: "open"});
-        shadow.innerHTML = 
-        `<div class="comment card">
+  constructor() {
+    super();
+  }
+  //builds the html for the component
+  //overiding the connected call back method with my own HTML code
+  connectedCallback() {
+    // const rn = Math.random() * 100;
+    // this.innerHTML =
+    const shadow = this.attachShadow({ mode: "open" });
+    shadow.innerHTML = `<div class="comment card">
         <h5>***********************************************</h5>
         <h3> 
         <em><strong>Name:</em></strong> ${this.getAttribute("name")}
@@ -23,7 +22,9 @@ export default class Comment extends HTMLElement {
         <em><strong>Email:</em></strong> ${this.getAttribute("email")}
         </h3>
         <h3>
-        <em><strong>Your Testimony:</em></strong> ${this.getAttribute("comment")}
+        <em><strong>Your Testimony:</em></strong> ${this.getAttribute(
+          "comment"
+        )}
         </h3>
         <h6>
         ${this.getAttribute("day_time")} <br>
@@ -55,10 +56,10 @@ export default class Comment extends HTMLElement {
         </style>
         
         `;
-    }
   }
+}
 
-  customElements.define('c-comment', Comment);
+customElements.define("c-comment", Comment);
 
-  // ${this.getAttribute("day_time")} <br>
-  // ${this.getAttribute("only_time")}
+// ${this.getAttribute("day_time")} <br>
+// ${this.getAttribute("only_time")}
